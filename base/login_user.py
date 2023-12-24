@@ -4,7 +4,7 @@ from helpers import *
 
 class LoginUser:
 
-    @allure.step('Авторизация пользователя')
+    @allure.step('Создаем пользователя и запоминаем данные')
     def login_user(self):
         data = register_new_user_and_return_login_password()
         payload = {

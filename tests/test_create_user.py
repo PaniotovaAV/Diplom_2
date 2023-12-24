@@ -9,7 +9,7 @@ class TestCreateUser:
     payload = {}
 
     @allure.title('Проверка успешного создания пользователя')
-    @allure.description('Заполняем формы уникальными данными.  '
+    @allure.description('Заполняем формы уникальными данными'
                         'Проверяем:статус код = 200'
                         'Информацию об успешном создании пользователя')
     def test_create_user_success_true(self):
@@ -25,7 +25,8 @@ class TestCreateUser:
     def test_create_two_identical_user_false(self):
         payload = CreateUser.login_courier_success(self)
         response_post = requests.post(EndpointUrlCreateUser.USER_CREATE, data=payload)
-        assert (response_post.status_code == 403 and '"success":false' in response_post.text and
+        assert (response_post.status_code == 403 and
+                '"success":false' in response_post.text and
                 response_post.json()['message'] == 'User already exists')
 
     @allure.title('Проверка обязательных полей для создания пользователя, '
@@ -39,7 +40,8 @@ class TestCreateUser:
                                          CreateUser.data_without_name(self=True)])
     def test_create_user_without_password_or_login_or_name(self, payload):
         response_post = requests.post(EndpointUrlCreateUser.USER_CREATE, data=payload)
-        assert (response_post.status_code == 403 and '"success":false' in response_post.text and
+        assert (response_post.status_code == 403 and
+                '"success":false' in response_post.text and
                 response_post.json()['message'] == 'Email, password and name are required fields')
 
     @allure.title('Очистка данных')

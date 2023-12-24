@@ -21,7 +21,6 @@ class GetOrders:
             token = response_post.json()['accessToken']
         return token
 
-    @allure.title('Получаем хеш ингредиента')
     @allure.step('Создаем get запрос, передаем в него токен и получаем хеш ингредиента')
     def get_ingredient_data(self):
         token = GetOrders.token_user(self)
@@ -33,7 +32,6 @@ class GetOrders:
             hash_ingredients.append(f'{response_get.json()["data"][1]["_id"]}')
         return hash_ingredients
 
-    @allure.title('Создаем заказ')
     @allure.step('Передаем хеш ингредиентов и создаем заказ')
     def post_order(self):
         payload = {

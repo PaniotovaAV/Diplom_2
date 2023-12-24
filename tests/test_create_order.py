@@ -32,7 +32,8 @@ class TestCreateOrder:
     @allure.title('Проверка неуспешного создания заказа авторизованного пользователя без ингредиентов')
     @allure.description('Не передаем ингредиенты'
                         'Проверяем: статус код = 400'
-                        'Текст сообщения: "Ingredient ids must be provided"')
+                        'Текст сообщения: "Ingredient ids must be provided"'
+                        'Информацию об ошибочном создании заказа')
     def test_create_order_not_ingredient(self):
         token = CreateOrder.token_user(self)
         payload = {
@@ -57,7 +58,8 @@ class TestCreateOrder:
     @allure.title('Проверка неуспешного создания заказа неавторизованного пользователя без ингредиентов')
     @allure.description('Не передаем ингредиенты'
                         'Проверяем: статус код = 400'
-                        'Текст сообщения: "Ingredient ids must be provided"')
+                        'Текст сообщения: "Ingredient ids must be provided"'
+                        'Информацию об ошибочном создании заказа')
     def test_create_order_not_user_not_ingredient(self):
         payload = {
             'ingredients': []

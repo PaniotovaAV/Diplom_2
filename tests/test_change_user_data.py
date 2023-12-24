@@ -1,7 +1,7 @@
 import allure
-from helpers import *
 from endpoints.endpount_url_change_user_data import EndpointUrlChangeUserData
 from base.get_user_data import GetUserData
+from helpers import *
 
 
 class TestChangeUserData:
@@ -10,7 +10,7 @@ class TestChangeUserData:
     @allure.description('Получаем токен авторизованного пользователя'
                         'Обновляем информацию о пользователе - поля "Email" и "Name"'
                         'Получаем: статус код  = 200'
-                        'Наличие всех обязательных полей')
+                        'Информацию об успешном создании пользователя')
     def test_change_user_data_success_true(self):
         token = GetUserData.get_user_data(self)
         updated_profile = {
