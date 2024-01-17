@@ -7,9 +7,9 @@ from helpers import *
 
 class GetOrders:
 
-    @allure.step('Создаем пользователя')
-    @allure.step('Запоминаем переданные данные и с ними авторизуемся')
-    @allure.step('Возвращаем токен пользователя')
+    @allure.step('Создаем пользователя '
+                 'Запоминаем переданные данные и с ними авторизуемся '
+                 'Возвращаем токен пользователя')
     def token_user(self):
         token = []
         data = register_new_user_and_return_login_password()

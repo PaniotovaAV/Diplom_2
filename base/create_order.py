@@ -6,9 +6,9 @@ from helpers import *
 
 class CreateOrder:
 
-    @allure.step('Создаем пользователя')
-    @allure.step('Запоминаем переданные данные и с ними авторизуемся')
-    @allure.step('Возвращаем токен пользователя')
+    @allure.step('Создаем пользователя '
+                 'Запоминаем переданные данные и с ними авторизуемся '
+                 'Возвращаем токен пользователя')
     def token_user(self):
         token = []
         data = register_new_user_and_return_login_password()
@@ -20,8 +20,8 @@ class CreateOrder:
             token = response_post.json()['accessToken']
         return token
 
-    @allure.title('Получаем хеш ингредиента')
-    @allure.step('Создаем get запрос, передаем в него токен и получаем хеш ингредиента')
+
+    @allure.step('Получаем хеш ингредиента: создаем get запрос, передаем в него токен и получаем хеш ингредиента')
     def get_ingredient_data(self):
         token = CreateOrder.token_user(self)
         hash_ingredients = []

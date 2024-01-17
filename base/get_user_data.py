@@ -6,10 +6,10 @@ from helpers import *
 
 class GetUserData:
 
-    @allure.step('Создаем пользователя')
-    @allure.step('Запоминаем переданные данные и с ними авторизуемся')
-    @allure.step('Получаем информацию о пользователе')
-    @allure.step('Возвращаем токен пользователя')
+    @allure.step('Создаем пользователя '
+                 'Запоминаем переданные данные и с ними авторизуемся '
+                 'Получаем информацию о пользователе '
+                 'Возвращаем токен пользователя')
     def get_user_data(self):
         token = []
         data = register_new_user_and_return_login_password()
