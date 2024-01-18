@@ -34,9 +34,9 @@ class TestCreateUser:
                         'Проверяем: статус код = 403'
                         'Информацию об ошибочном создании пользователя'
                         'Текст сообщения: "Email, password and name are required fields"')
-    @pytest.mark.parametrize('payload', [CreateUser.data_without_password(self=True),
-                                         CreateUser.data_without_login(self=True),
-                                         CreateUser.data_without_name(self=True)])
+    @pytest.mark.parametrize('payload', [CreateUser.data_without_password(),
+                                         CreateUser.data_without_login(),
+                                         CreateUser.data_without_name()])
     def test_create_user_without_password_or_login_or_name(self, payload):
         response_post = requests.post(URLS.USER_CREATE, data=payload)
         assert (response_post.status_code == 403 and
