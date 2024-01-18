@@ -1,6 +1,5 @@
 import allure
-from endpoints.endpount_url_change_user_data import EndpointUrlChangeUserData
-from endpoints.endpoint_url_login_user import EndpointUrlLoginUser
+from endpoints.urls import URLS
 from helpers import *
 
 
@@ -16,10 +15,10 @@ class GetUserData:
         payload = {
             'email': data[0],
             'password': data[1]}
-        response_post = requests.post(EndpointUrlLoginUser.USER_LOGIN, data=payload)
+        response_post = requests.post(URLS.USER_LOGIN, data=payload)
         if response_post.status_code == 200:
             token = response_post.json()['accessToken']
-        response_get = requests.get(EndpointUrlChangeUserData.GET_USER_DATA,
+        response_get = requests.get(URLS.GET_USER_DATA,
                                     headers={'Authorization': f'{token}'})
         if response_get.status_code == 200:
             return token

@@ -15,7 +15,7 @@ class LoginUser:
     @allure.step('Заполняем "Логин" и "Пароль" случайными данными')
     def random_login_user(self):
         random_data = {
-            'email': email_(),
-            'password': password_()
+            'email': fake.email(),
+            'password': fake.password(length=10)
         }
         return random_data

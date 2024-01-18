@@ -7,9 +7,9 @@ class CreateUser:
     @allure.step('Заполняем уникальными данными поля "Email", "Пароль", "Имя"')
     def data_login_success(self):
         payload = {
-            'email': email_(),
-            'password': password_(),
-            'name': first_name_()
+            'email': fake.email(),
+            'password': fake.password(length=10),
+            'name': fake.first_name()
         }
         return payload
 
@@ -26,9 +26,9 @@ class CreateUser:
     @allure.step('Передаем данные без "Пароля"')
     def data_without_password(self):
         payload = {
-            'email': email_(),
+            'email': fake.email(),
             'password': [],
-            'name': first_name_()
+            'name': fake.first_name()
         }
         return payload
 
@@ -36,16 +36,16 @@ class CreateUser:
     def data_without_login(self):
         payload = {
             'email': [],
-            'password': password_(),
-            'name': first_name_()
+            'password': fake.password(length=10),
+            'name': fake.first_name()
         }
         return payload
 
     @allure.step('Передаем данные без "Имени"')
     def data_without_name(self):
         payload = {
-            'email': email_(),
-            'password': password_(),
+            'email': fake.email(),
+            'password': fake.password(length=10),
             'name': []
         }
         return payload

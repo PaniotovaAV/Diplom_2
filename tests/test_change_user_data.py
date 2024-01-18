@@ -1,7 +1,10 @@
 import allure
-from endpoints.endpount_url_change_user_data import EndpointUrlChangeUserData
+import requests
+from endpoints.urls import URLS
 from base.get_user_data import GetUserData
-from helpers import *
+from faker import Faker
+
+fake = Faker(locale="ru_RU")
 
 
 class TestChangeUserData:
@@ -14,10 +17,10 @@ class TestChangeUserData:
     def test_change_user_data_success_true(self):
         token = GetUserData.get_user_data(self)
         updated_profile = {
-            'email': email_(),
-            'name': first_name_()
+            'email': fake.email(),
+            'name': fake.first_name()
         }
-        response_patch = requests.patch(EndpointUrlChangeUserData.PATCH_USER_DATA,
+        response_patch = requests.patch(URLS.PATCH_USER_DATA,
                                         headers={'Authorization': f'{token}'},
                                         data=updated_profile)
         assert response_patch.status_code == 200 and '"success":true' in response_patch.text
@@ -28,10 +31,10 @@ class TestChangeUserData:
                         'Текст сообщения: "You should be authorised"')
     def test_change_user_data_success_false(self):
         updated_profile = {
-            'email': email_(),
-            'name': first_name_()
+            'email': fake.email(),
+            'name': fake.first_name()
         }
-        response_patch = requests.patch(EndpointUrlChangeUserData.PATCH_USER_DATA, data=updated_profile)
+        response_patch = requests.patch(URLS.PATCH_USER_DATA, data=updated_profile)
         assert (response_patch.status_code == 401 and
                 '"success":false' in response_patch.text and
                 response_patch.json()['message'] == 'You should be authorised')

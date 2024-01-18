@@ -1,6 +1,5 @@
 import allure
-from endpoints.endpoint_url_get_ingredients_data import EndpointUrlGetIngredientsData
-from endpoints.endpoint_url_login_user import EndpointUrlLoginUser
+from endpoints.urls import URLS
 from helpers import *
 
 
@@ -15,7 +14,7 @@ class CreateOrder:
         payload = {
             'email': data[0],
             'password': data[1]}
-        response_post = requests.post(EndpointUrlLoginUser.USER_LOGIN, data=payload)
+        response_post = requests.post(URLS.USER_LOGIN, data=payload)
         if response_post.status_code == 200:
             token = response_post.json()['accessToken']
         return token
@@ -25,7 +24,7 @@ class CreateOrder:
     def get_ingredient_data(self):
         token = CreateOrder.token_user(self)
         hash_ingredients = []
-        response_get = requests.get(EndpointUrlGetIngredientsData.GET_INGREDIENTS_DATA,
+        response_get = requests.get(URLS.GET_INGREDIENTS_DATA,
                                     headers={'Authorization': f'{token}'})
         if response_get.status_code == 200:
             hash_ingredients.append(f'{response_get.json()["data"][0]["_id"]}')
