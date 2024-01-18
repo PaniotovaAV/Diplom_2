@@ -1,5 +1,5 @@
 import allure
-from endpoints.endpoint_url_create_order import EndpointUrlCreateOrder
+from endpoints.urls import EndpointUrlCreateOrder
 from endpoints.endpoint_url_get_ingredients_data import EndpointUrlGetIngredientsData
 from endpoints.endpoint_url_login_user import EndpointUrlLoginUser
 from helpers import *

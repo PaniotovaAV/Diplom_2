@@ -1,6 +1,6 @@
 import allure
 from base.create_order import CreateOrder
-from endpoints.endpoint_url_create_order import EndpointUrlCreateOrder
+from endpoints.urls import EndpointUrlCreateOrder
 from helpers import *
 
 
