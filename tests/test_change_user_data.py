@@ -1,10 +1,5 @@
 import allure
-import requests
-from endpoints.urls import URLS
-from base.get_user_data import GetUserData
-from faker import Faker
-
-fake = Faker(locale="ru_RU")
+from helpers import *
 
 
 class TestChangeUserData:
@@ -15,7 +10,7 @@ class TestChangeUserData:
                         'Получаем: статус код  = 200'
                         'Информацию об успешном создании пользователя')
     def test_change_user_data_success_true(self):
-        token = GetUserData.get_user_data(self)
+        token = token_user()
         updated_profile = {
             'email': fake.email(),
             'name': fake.first_name()

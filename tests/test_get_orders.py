@@ -1,7 +1,6 @@
 import allure
-import requests
 from base.get_orders import GetOrders
-from endpoints.urls import URLS
+from helpers import *
 
 
 class TestGetOrders:
@@ -12,7 +11,7 @@ class TestGetOrders:
                         'Проверяем: статус код = 200'
                         'Информацию об успешном создании заказа')
     def test_get_orders_success_true(self):
-        token = GetOrders.token_user(self)
+        token = token_user()
         post__order = GetOrders.post_order(self)
         payload = post__order.json()["order"]
         response_get = requests.get(URLS.GET_ORDERS, data=payload,

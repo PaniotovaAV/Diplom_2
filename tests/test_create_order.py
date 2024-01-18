@@ -1,11 +1,6 @@
 import allure
 import random
-import requests
-from base.create_order import CreateOrder
-from endpoints.urls import URLS
-from faker import Faker
-
-fake = Faker(locale="ru_RU")
+from helpers import *
 
 
 class TestCreateOrder:
@@ -16,7 +11,7 @@ class TestCreateOrder:
                         'Информацию об успешном создании заказа')
     def test_create_order_success_true(self):
         payload = {
-            'ingredients': CreateOrder.get_ingredient_data(self)
+            'ingredients': get_ingredient_data()
         }
         response_post = requests.post(URLS.CREATE_ORDER, data=payload)
         assert response_post.status_code == 200 and '"success":true' in response_post.text
@@ -25,7 +20,7 @@ class TestCreateOrder:
     @allure.description('Передаем случайный хеш ингредиента'
                         'Проверяем: статус код = 500')
     def test_create_order_false_hash(self):
-        token = CreateOrder.token_user(self)
+        token = token_user()
         ramdom_number = ''
         for x in range(8):
             ramdom_number = ramdom_number + random.choice(list('123456789'))
@@ -42,7 +37,7 @@ class TestCreateOrder:
                         'Текст сообщения: "Ingredient ids must be provided"'
                         'Информацию об ошибочном создании заказа')
     def test_create_order_not_ingredient(self):
-        token = CreateOrder.token_user(self)
+        token = token_user()
         payload = {
             'ingredients': []
         }
