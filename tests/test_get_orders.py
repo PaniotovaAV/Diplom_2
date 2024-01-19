@@ -13,8 +13,8 @@ class TestGetOrders:
     def test_get_orders_success_true(self):
         get_orders = GetOrders()
         token = token_user()
-        post__order = get_orders.post_order()
-        payload = post__order.json()["order"]
+        post_order = get_orders.post_order()
+        payload = post_order.json()["order"]
         response_get = requests.get(URLS.GET_ORDERS, data=payload,
                                     headers={'Authorization': f'{token}'})
         assert response_get.status_code == 200 and '"success":true' in response_get.text
