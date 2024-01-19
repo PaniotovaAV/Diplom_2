@@ -1,3 +1,4 @@
+import random
 import requests
 from data import *
 from endpoints.urls import URLS
@@ -45,3 +46,10 @@ def get_ingredient_data():
         hash_ingredients.append(f'{response_get.json()["data"][0]["_id"]}')
         hash_ingredients.append(f'{response_get.json()["data"][1]["_id"]}')
     return hash_ingredients
+
+
+def num_number():
+    ramdom_number = ''
+    for x in range(8):
+        ramdom_number = ramdom_number + random.choice(list('123456789'))
+    return ramdom_number

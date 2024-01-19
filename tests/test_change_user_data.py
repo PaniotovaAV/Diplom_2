@@ -15,7 +15,7 @@ class TestChangeUserData:
             'email': fake.email(),
             'name': fake.first_name()
         }
-        response_patch = requests.patch(URLS.PATCH_USER_DATA,
+        response_patch = requests.patch(URLS.GET_USER_DATA,
                                         headers={'Authorization': f'{token}'},
                                         data=updated_profile)
         assert response_patch.status_code == 200 and '"success":true' in response_patch.text
@@ -29,7 +29,7 @@ class TestChangeUserData:
             'email': fake.email(),
             'name': fake.first_name()
         }
-        response_patch = requests.patch(URLS.PATCH_USER_DATA, data=updated_profile)
+        response_patch = requests.patch(URLS.GET_USER_DATA, data=updated_profile)
         assert (response_patch.status_code == 401 and
                 '"success":false' in response_patch.text and
                 response_patch.json()['message'] == 'You should be authorised')

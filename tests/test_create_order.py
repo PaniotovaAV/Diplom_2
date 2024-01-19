@@ -1,5 +1,4 @@
 import allure
-import random
 from helpers import *
 
 
@@ -21,11 +20,8 @@ class TestCreateOrder:
                         'Проверяем: статус код = 500')
     def test_create_order_false_hash(self):
         token = token_user()
-        ramdom_number = ''
-        for x in range(8):
-            ramdom_number = ramdom_number + random.choice(list('123456789'))
         payload = {
-            'ingredients': [f'{ramdom_number}']
+            'ingredients': [f'{num_number()}']
         }
         response_post = requests.post(URLS.CREATE_ORDER, data=payload,
                                       headers={'Authorization': f'{token}'})
@@ -51,11 +47,8 @@ class TestCreateOrder:
     @allure.description('Передаем случайный хеш ингредиента'
                         'Проверяем: статус код = 500')
     def test_create_order_not_user_false_hash(self):
-        ramdom_number = ''
-        for x in range(8):
-            ramdom_number = ramdom_number + random.choice(list('123456789'))
         payload = {
-            'ingredients': [f'{ramdom_number}']
+            'ingredients': [f'{num_number()}']
         }
         response_post = requests.post(URLS.CREATE_ORDER, data=payload)
         assert response_post.status_code == 500, f'Internal Server Error'
