@@ -28,3 +28,4 @@ class TestGetOrders:
         assert (response_get.status_code == 401 and
                 '"success":false' in response_get.text and
                 response_get.json()['message'] == 'You should be authorised')
+
