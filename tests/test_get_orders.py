@@ -11,8 +11,9 @@ class TestGetOrders:
                         'Проверяем: статус код = 200'
                         'Информацию об успешном создании заказа')
     def test_get_orders_success_true(self):
+        get_orders = GetOrders()
         token = token_user()
-        post__order = GetOrders.post_order(self)
+        post__order = get_orders.post_order()
         payload = post__order.json()["order"]
         response_get = requests.get(URLS.GET_ORDERS, data=payload,
                                     headers={'Authorization': f'{token}'})

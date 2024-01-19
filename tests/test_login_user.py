@@ -12,7 +12,8 @@ class TestLoginUser:
                         'Проверяем: статус код  = 200'
                         'Наличие всех обязательных полей')
     def test_login_user_success_true(self):
-        payload = LoginUser.login_user(self)
+        login_user = LoginUser()
+        payload = login_user.login_user()
         response_post = requests.post(URLS.USER_LOGIN, data=payload)
         assert (response_post.status_code == 200 and
                 '"success":true', '"accessToken": "Bearer"', '"refreshToken": ""',
@@ -23,6 +24,7 @@ class TestLoginUser:
                         'Проверяем: статус код  = 401'
                         'Текст сообщения: "email or password are incorrect"')
     def test_login_and_password_user_false(self):
-        payload = LoginUser.random_login_user(self)
+        login_user = LoginUser()
+        payload = login_user.random_login_user()
         response_post = requests.post(URLS.USER_LOGIN, data=payload)
         assert response_post.status_code == 401 and response_post.json()['message'] == 'email or password are incorrect'
